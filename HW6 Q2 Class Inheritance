@@ -1,0 +1,70 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+// Base class: ElectronicDevice
+class ElectronicDevice {
+protected:
+    string brand;      // Brand of the electronic device
+    string model;      // Model of the electronic device
+    bool powerOn;      // Power state (on or off)
+
+public:
+    // Constructor to initialize brand, model, and set powerOn to false
+    ElectronicDevice(string b = "Unknown", string m = "Unknown") 
+        : brand(b), model(m), powerOn(false) {}
+
+    // Method to turn on the device
+    void turnOn() {
+        powerOn = true;
+    }
+
+    // Method to turn off the device
+    void turnOff() {
+        powerOn = false;
+    }
+};
+
+	
+// Derived (inheritance) class: Television
+class Television : public ElectronicDevice {
+protected:
+    double screenSize;  // Screen size in inches
+    string resolution;  // Screen resolution
+
+public:
+    // Constructor to initialize Television-specific properties and call base class constructor
+    Television(string b = "Unknown", string m = "Unknown", double s = 0.0, string r = "Unknown")
+        : ElectronicDevice(b, m), screenSize(s), resolution(r) {}
+
+    // Method to display information about the television
+    void displayInfo() {
+	String powerB = “OFF”;
+if(powerOn) powerB = “ON”;
+        cout << "Television Info:" << endl;
+        cout << "Brand: " << brand << endl;
+        cout << "Model: " << model << endl;
+        cout << "Power: " << (powerB) << endl;
+        cout << "Screen Size: " << screenSize << " inches" << endl;
+        cout << "Resolution: " << resolution << endl;
+    }
+};
+
+int main() {
+    // Creating an instance of Television
+    Television tv("Sony", "Bravia XR A95L", 65.0, "4K");
+
+    // Turn on the television
+    tv.turnOn();
+
+    // Display the television's information
+    tv.displayInfo();
+
+    // Turn off the television
+    tv.turnOff();
+
+    // Display the television's information again to check the power state
+    tv.displayInfo();
+
+    return 0;
+}
